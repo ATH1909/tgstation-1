@@ -58,10 +58,10 @@
 /obj/item/clothing/under/emp_act()
 	. = ..()
 	if(has_sensor > NO_SENSORS)
-		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
-		if(ismob(loc))
+		if(ismob(loc) && sensor_mode != SENSOR_OFF)
 			var/mob/M = loc
-			to_chat(M,"<span class='warning'>The sensors on the [src] change rapidly!</span>")
+			to_chat(M,"<span class='warning'>[src]'s sensors shut off!</span>")
+		sensor_mode = SENSOR_OFF
 
 /obj/item/clothing/under/equipped(mob/user, slot)
 	..()
